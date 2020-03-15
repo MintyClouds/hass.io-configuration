@@ -1,0 +1,63 @@
+- alias: change_volume_chronopod
+  trigger:
+    platform: state
+    entity_id: input_number.chronopod_volume
+  action:
+    service: rest_command.amixer_volume_slider
+
+- alias: mute_volume_chronopod
+  trigger:
+    platform: state
+    entity_id: input_boolean.chronopod_volume
+  action:
+    service: rest_command.amixer_volume_mute
+
+- alias: plexamp_service_start_after_stop
+  trigger:
+    platform: state
+    entity_id: switch.chronopod_plexamp_service
+    to: "off"
+  action:
+    - delay:
+        seconds: 2
+    - service: switch.turn_on
+      entity_id: switch.chronopod_plexamp_service
+
+- alias: set_bluetooth_discoverable
+  trigger:
+    platform: state
+    entity_id: input_boolean.chronopod_bluetooth_discoverable
+  action:
+    service: rest_command.bluetoothctl_discoverable_toggle
+
+- alias: set_last_ir_mute_trigger_time
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mintymcu_ir_volume_mute_trigger_sensor
+    to: "on"
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.last_ir_mute_time
+      data_template:
+        value: "{{ now() | timestamp_local }}"
+
+- alias: set_last_ir_power_trigger_time
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mintymcu_ir_power_trigger_sensor
+    to: "on"
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.last_ir_power_time
+      data_template:
+        value: "{{ now() | timestamp_local }}"
+
+- alias: update_ir_mute_power_time
+  trigger:
+    - platform: time_pattern
+      minutes: '/1'
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.chronopod_last_muted
+    - service: homeassistant.update_entity
+      entity_id: sensor.chronopod_last_poweroff

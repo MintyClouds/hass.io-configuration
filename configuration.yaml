@@ -1,0 +1,148 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+sensor:
+  # Deluge
+  - platform: deluge
+    host: !secret chrononas_host
+    username: nobody
+    password: deluge
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+# last.fm
+  - platform: lastfm
+    api_key: !secret api_key_lastfm
+    users:
+      - deathridge
+  # twitch
+  - platform: twitch
+    client_id: !secret api_key_twitch
+    channels:
+      - The8BitDrummer
+      - Cubeofwood
+      - ronnieradkeofficial
+# openhardwaremonitor
+  - platform: openhardwaremonitor
+    host: !secret ah532_host
+# lastfm attributes
+  - platform: template
+    sensors:
+      last_scrobbled:
+        friendly_name: "Last.fm last scrobbled"
+        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'last_played') }}"
+      top_track:
+        friendly_name: "Last.fm top track"
+        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'top_played') }}"
+      total_scrobbles:
+        friendly_name: "Last.fm total scrobbles"
+        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'play_count') }}"
+
+  - platform: template
+    sensors:
+      chronopod_last_muted:
+        friendly_name: "chronopod last muted"
+        value_template: "{{ relative_time(
+        strptime(states.input_text.last_ir_mute_time.state, '%Y-%m-%d %H:%M:%S.%f%z' )
+        ) }}"
+      chronopod_last_poweroff:
+        friendly_name: "chronopod last power off"
+        value_template: "{{ relative_time(
+        strptime(states.input_text.last_ir_power_time.state, '%Y-%m-%d %H:%M:%S.%f%z' )
+        ) }}"
+
+switch:
+  # Deluge
+  - platform: deluge
+    host: !secret chrononas_host
+    username: nobody
+    password: deluge
+  - platform: wake_on_lan
+    name: "AH532 WoL"
+    mac: !secret ah532_mac
+    host: !secret ah532_host
+  - platform: rest
+    name: "ChronoPod Plexamp Service"
+    resource: !secret chronopod_endpoint_plexamp
+    body_on: '{"value": "on"}'
+    body_off: '{"value": "off"}'
+    is_on_template: '{{ value_json.running }}'
+    headers:
+      Content-Type: application/json
+
+input_number:
+  # alsa volume control
+  chronopod_volume:
+    name: ChronoPod Volume Setting
+    initial: 70
+    min: 70
+    max: 100
+    step: 1
+
+input_boolean:
+  chronopod_volume:
+    name: Chronopod Volume Setting
+    initial: off
+  chronopod_plexamp_state:
+    name: Chronopod Plexamp State
+    initial: on
+  chronopod_bluetooth_discoverable:
+    name: Chronopod Bluetooth Discoverable
+    initial: off
+
+input_text:
+  last_ir_mute_time:
+    name: MintyMCU_IR Last Mute Trigger Time
+  last_ir_power_time:
+    name: MintyMCU_IR Last Power Trigger Time
+
+# shell_command:
+#  amixer_volume_slider: 'amixer sset "PCM" {{ states("input_number.chronopod_volume") }}% '
+
+rest_command:
+   amixer_volume_slider:
+     url: !secret chronopod_endpoint_set_volume
+     method: POST
+     headers:
+       accept: 'application/json'
+     payload: '{"value": {{ states("input_number.chronopod_volume") }}}'
+     content_type:  'application/json; charset=utf-8'
+   amixer_volume_mute:
+     url: !secret chronopod_endpoint_set_mute
+     method: POST
+     headers:
+       accept: 'application/json'
+     payload: '{"value": "{{ states("input_boolean.chronopod_volume") }}"}'
+     content_type:  'application/json; charset=utf-8'
+   plexamp_state_toggle:
+     url: !secret chronopod_endpoint_set_plexamp_state
+     method: POST
+     headers:
+       accept: 'application/json'
+     payload: '{"value": "{{ states("input_boolean.chronopod_plexamp_state") }}"}'
+     content_type:  'application/json; charset=utf-8'
+   bluetoothctl_discoverable_toggle:
+     url: !secret chronopod_endpoint_set_bluetooth_discoverable
+     method: POST
+     headers:
+       accept: 'application/json'
+     payload: '{"value": "{{ states("input_boolean.chronopod_bluetooth_discoverable") }}"}'
+     content_type:  'application/json; charset=utf-8'
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
