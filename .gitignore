@@ -1,1 +1,7 @@
 secrets.yaml
+home-assistant_v2.db
+home-assistant.log
+.cloud
+.HA_VERSION
+.gitattributes
+.storage
