@@ -43,13 +43,13 @@ sensor:
     sensors:
       last_scrobbled:
         friendly_name: "Last.fm last scrobbled"
-        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'last_played') }}"
+        value_template: "{{ state_attr('sensor.deathridge', 'last_played') }}"
       top_track:
         friendly_name: "Last.fm top track"
-        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'top_played') }}"
+        value_template: "{{ state_attr('sensor.deathridge', 'top_played') }}"
       total_scrobbles:
         friendly_name: "Last.fm total scrobbles"
-        value_template: "{{ state_attr('sensor.lastfm_deathridge', 'play_count') }}"
+        value_template: "{{ state_attr('sensor.deathridge', 'play_count') }}"
 
   - platform: template
     sensors:
