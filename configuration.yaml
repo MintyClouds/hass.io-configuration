@@ -38,6 +38,10 @@ sensor:
 # openhardwaremonitor
   - platform: openhardwaremonitor
     host: !secret ah532_host
+    name: ohm_ah532
+  - platform: openhardwaremonitor
+    host: !secret x230d_host
+    name: ohm_x230d
 # lastfm attributes
   - platform: template
     sensors:
