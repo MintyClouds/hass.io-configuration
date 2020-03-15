@@ -111,9 +111,6 @@ input_text:
   last_ir_power_time:
     name: MintyMCU_IR Last Power Trigger Time
 
-# shell_command:
-#  amixer_volume_slider: 'amixer sset "PCM" {{ states("input_number.chronopod_volume") }}% '
-
 rest_command:
    amixer_volume_slider:
      url: !secret chronopod_endpoint_set_volume
