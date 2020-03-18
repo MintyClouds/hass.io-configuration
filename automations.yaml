@@ -38,13 +38,13 @@
     - service: switch.toggle
       entity_id: switch.mute
 
-- alias: set_mintymcu_ir_mute
+- alias: set_mintymcu_ir_power
   trigger:
     platform: state
-    entity_id: input_boolean.mintymcu_ir_mute
+    entity_id: input_boolean.mintymcu_ir_power
   action:
     - service: switch.toggle
-      entity_id: switch.mute
+      entity_id: switch.power
 
 - alias: set_last_ir_mute_trigger_time
   trigger:
