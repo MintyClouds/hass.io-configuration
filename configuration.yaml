@@ -84,6 +84,26 @@ switch:
     is_on_template: '{{ value_json.running }}'
     headers:
       Content-Type: application/json
+  - platform: template
+    switches:
+      mintymcu_ir_mute:
+        frienldy_name: "mintymcu_ir mute"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.mute
+        turn_off:
+          service: switch.turn_on
+          data:
+            entity_id: switch.mute
+      mintymcu_ir_mute_recalibrate:
+        friendly_name: "mintymcu_ir mute recalibrate"
+        turn_on:
+          turn_on:
+            service: switch.turn_on
+            data:
+              entity_id: switch.mute
+
 
 input_number:
   # alsa volume control
