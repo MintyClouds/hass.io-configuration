@@ -99,10 +99,9 @@ switch:
       mintymcu_ir_mute_recalibrate:
         friendly_name: "mintymcu_ir mute recalibrate"
         turn_on:
-          turn_on:
-            service: switch.turn_on
-            data:
-              entity_id: switch.mute
+          service: switch.turn_on
+          data:
+            entity_id: switch.mute
 
 
 input_number:
