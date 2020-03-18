@@ -87,7 +87,7 @@ switch:
   - platform: template
     switches:
       mintymcu_ir_mute:
-        frienldy_name: "mintymcu_ir mute"
+        friendly_name: "mintymcu_ir mute"
         turn_on:
           service: switch.turn_on
           data:
