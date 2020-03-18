@@ -84,28 +84,6 @@ switch:
     is_on_template: '{{ value_json.running }}'
     headers:
       Content-Type: application/json
-  - platform: template
-    switches:
-      mintymcu_ir_mute:
-        friendly_name: "mintymcu_ir mute"
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.mute
-        turn_off:
-          service: switch.turn_on
-          data:
-            entity_id: switch.mute
-      mintymcu_ir_power:
-        friendly_name: "mintymcu_ir power"
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.power
-        turn_off:
-          service: switch.turn_on
-          data:
-            entity_id: switch.power
 
 
 input_number:
@@ -127,6 +105,12 @@ input_boolean:
   chronopod_bluetooth_discoverable:
     name: Chronopod Bluetooth Discoverable
     initial: off
+  mintymcu_ir_mute:
+    name: MintyMCU IR Mute
+    initial: off
+  mintymcu_ir_power:
+    name: MintyMCU IR Power
+    initial: on
 
 input_text:
   last_ir_mute_time:
