@@ -97,7 +97,7 @@
   trigger:
     - platform: template
       value_template: "
-      {{ states.input_number.mintymcu_panel_encoder_value_from > states.input_number.mintymcu_panel_encoder_value_to }}
+      {{ states('input_number.mintymcu_panel_encoder_value_from') > states('input_number.mintymcu_panel_encoder_value_to') }}
       "
   action:
     - service: switch.toggle
