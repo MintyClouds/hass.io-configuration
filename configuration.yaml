@@ -94,6 +94,11 @@ input_number:
     min: 70
     max: 100
     step: 1
+  mintymcu_panel_encoder_value:
+    name: Panel Encoder State
+    min: 0
+    max: 60
+
 
 input_boolean:
   chronopod_volume:
@@ -111,6 +116,12 @@ input_boolean:
   mintymcu_ir_power:
     name: MintyMCU IR Power
     initial: on
+  mintymcu_panel_encoder_value_increased:
+    name: MintyPanel Encoder Value Increased
+    inital: false
+  mintymcu_panel_encoder_value_decreased:
+    name: MintyPanel Encoder Value Decreased
+    inital: false
 
 input_text:
   last_ir_mute_time:

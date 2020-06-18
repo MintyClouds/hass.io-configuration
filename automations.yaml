@@ -78,20 +78,28 @@
     - service: homeassistant.update_entity
       entity_id: sensor.chronopod_last_poweroff
 
-- alias: panel_encoder_volume_up
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.mintymcu_control_panel_rotary_encoder
-    value_template: "{{ trigger.to_state.state > trigger.from_state.state }}"
-  action:
-    - service: switch.toggle
-      entity_id: switch.speakers_volume_up
+- alias: panel_encoder_save_value
+  - trigger:
+      platform: state
+      entity_id: sensor.mintymcu_control_panel_rotary_encoder
+    action:
+      - service: input_number.set_value
+        entity_id: input_number.mintymcu_panel_encoder_value
 
-- alias: panel_encoder_volume_down
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.mintymcu_control_panel_rotary_encoder
-    value_template: "{{ trigger.to_state.state < trigger.from_state.state }}"
-  action:
-    - service: switch.toggle
-      entity_id: switch.speakers_volume_down
+#- alias: panel_encoder_volume_up
+#  trigger:
+#    platform: template
+#    entity_id: sensor.mintymcu_control_panel_rotary_encoder
+#    value_template: "{{ trigger.to_state.state > trigger.from_state.state }}"
+#  action:
+#    - service: switch.toggle
+#      entity_id: switch.speakers_volume_up
+#
+#- alias: panel_encoder_volume_down
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.mintymcu_control_panel_rotary_encoder
+#    value_template: "{{ trigger.to_state.state < trigger.from_state.state }}"
+#  action:
+#    - service: switch.toggle
+#      entity_id: switch.speakers_volume_down
