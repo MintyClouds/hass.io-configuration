@@ -94,8 +94,12 @@ input_number:
     min: 70
     max: 100
     step: 1
-  mintymcu_panel_encoder_value:
-    name: Panel Encoder State
+  mintymcu_panel_encoder_value_from:
+    name: Panel Encoder State Before
+    min: 0
+    max: 60
+  mintymcu_panel_encoder_value_to:
+    name: Panel Encoder State After
     min: 0
     max: 60
 
