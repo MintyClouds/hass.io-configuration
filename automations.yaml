@@ -80,7 +80,7 @@
 
 - alias: panel_encoder_volume_up
   trigger:
-    platform: state
+    platform: template
     entity_id: sensor.mintymcu_control_panel_rotary_encoder
     value_template: "{{ trigger.to_state.state > trigger.from_state.state }}"
   action:
@@ -89,7 +89,7 @@
 
 - alias: panel_encoder_volume_down
   trigger:
-    platform: state
+    platform: template
     entity_id: sensor.mintymcu_control_panel_rotary_encoder
     value_template: "{{ trigger.to_state.state < trigger.from_state.state }}"
   action:
