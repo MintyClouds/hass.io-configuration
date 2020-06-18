@@ -118,10 +118,8 @@ input_boolean:
     initial: on
   mintymcu_panel_encoder_value_increased:
     name: MintyPanel Encoder Value Increased
-    inital: false
   mintymcu_panel_encoder_value_decreased:
     name: MintyPanel Encoder Value Decreased
-    inital: false
 
 input_text:
   last_ir_mute_time:
