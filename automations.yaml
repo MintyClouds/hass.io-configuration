@@ -85,6 +85,8 @@
   action:
     - service: input_number.set_value
       entity_id: input_number.mintymcu_panel_encoder_value
+      data_template:
+        value: "{{ trigger.to_state.state }}"
 
 #- alias: panel_encoder_volume_up
 #  trigger:
