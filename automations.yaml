@@ -78,7 +78,7 @@
     - service: homeassistant.update_entity
       entity_id: sensor.chronopod_last_poweroff
 
-- alias: set_mintymcu_ir_power
+- alias: save_panel_value
   trigger:
     platform: state
     entity_id: sensor.mintymcu_control_panel_rotary_encoder
