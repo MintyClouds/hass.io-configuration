@@ -77,3 +77,21 @@
       entity_id: sensor.chronopod_last_muted
     - service: homeassistant.update_entity
       entity_id: sensor.chronopod_last_poweroff
+
+- alias: panel_encoder_volume_up
+  trigger:
+    platform: state
+    entity_id: sensor.mintymcu_control_panel_rotary_encoder
+    value_template: "{{ trigger.to_state.state > trigger.from_state.state }}"
+  action:
+    - service: switch.toggle
+      entity_id: switch.speakers_volume_up
+
+- alias: panel_encoder_volume_down
+  trigger:
+    platform: state
+    entity_id: sensor.mintymcu_control_panel_rotary_encoder
+    value_template: "{{ trigger.to_state.state < trigger.from_state.state }}"
+  action:
+    - service: switch.toggle
+      entity_id: switch.speakers_volume_down
