@@ -121,3 +121,5 @@
   action:
     - service: switch.toggle
       entity_id: switch.speakers_mute
+    - service: switch.toggle
+      entity_id: switch.mintymcu_control_panel_led
