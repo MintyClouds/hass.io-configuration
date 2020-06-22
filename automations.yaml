@@ -112,3 +112,12 @@
   action:
     - service: switch.toggle
       entity_id: switch.speakers_volume_down
+
+- alias: execute_panel_button_k7_toggle_mute
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mintymcu_control_panel_button_k7
+    to: "on"
+  action:
+    - service: switch.toggle
+      entity_id: switch.speakers_mute
