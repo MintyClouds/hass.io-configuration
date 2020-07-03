@@ -84,6 +84,18 @@ switch:
     is_on_template: '{{ value_json.running }}'
     headers:
       Content-Type: application/json
+  - platform: template
+    switches:
+      mintymcu_desklight:
+        value_template: "{{ is_state('light.mintyrgb_desklight', 'on') }}"
+        turn_on:
+          service: switch.toggle
+          data:
+            entity_id: switch.mintymcu_rgb_desklight_default_color
+        turn_off:
+          service: light.turn_off
+          data:
+            entity_id: light.mintyrgb_desklight
 
 
 input_number:
@@ -96,12 +108,12 @@ input_number:
     step: 1
   mintymcu_panel_encoder_value_from:
     name: Panel Encoder State Before
-    min: 0
-    max: 60
+#    min: 0
+#    max: 60
   mintymcu_panel_encoder_value_to:
     name: Panel Encoder State After
-    min: 0
-    max: 60
+#    min: 0
+#    max: 60
 
 
 input_boolean:
