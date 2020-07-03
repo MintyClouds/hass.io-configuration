@@ -108,12 +108,14 @@ input_number:
     step: 1
   mintymcu_panel_encoder_value_from:
     name: Panel Encoder State Before
-#    min: 0
-#    max: 60
+    min: -100
+    max: 100
+    initial: 20
   mintymcu_panel_encoder_value_to:
     name: Panel Encoder State After
-#    min: 0
-#    max: 60
+    min: -100
+    max: 100
+    initial: 20
 
 
 input_boolean:
@@ -136,6 +138,8 @@ input_boolean:
     name: MintyPanel Encoder Value Increased
   mintymcu_panel_encoder_value_decreased:
     name: MintyPanel Encoder Value Decreased
+  mintymcu_panel_encoder_recalibrate:
+    name: MintyPanel Encoder Recalibration
 
 input_text:
   last_ir_mute_time:

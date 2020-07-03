@@ -113,6 +113,14 @@
     - service: switch.toggle
       entity_id: switch.speakers_volume_down
 
+#- alias: recalibrate_panel_encoder_volume
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.mintymcu_panel_encoder_recalibrate
+#  action:
+#    - service: switch.toggle
+#      entity_id: switch.speakers_mute
+
 - alias: execute_panel_button_upper_k0_toggle_switch_1
   trigger:
     platform: state
