@@ -121,10 +121,10 @@
 #    - service: switch.toggle
 #      entity_id: switch.speakers_mute
 
-- alias: execute_panel_button_upper_k0_toggle_switch_1
+- alias: execute_panel_upper_button_k0_toggle_switch_1
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k0
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k0
     to: "on"
   action:
     - service: switch.toggle
@@ -132,82 +132,82 @@
 #    - service: switch.toggle
 #      entity_id: switch.mintymcu_control_panel_led
 
-- alias: execute_panel_button_upper_k1_toggle_switch_2
+- alias: execute_panel_upper_button_k1_toggle_switch_2
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k1
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k1
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_2
 
-- alias: execute_panel_button_upper_k2_toggle_switch_3_pc
+- alias: execute_panel_upper_button_k2_toggle_switch_3_pc
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k2
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k2
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_3
 
-- alias: execute_panel_button_upper_k3_toggle_switch_4_nintendo
+- alias: execute_panel_upper_button_k3_toggle_switch_4_nintendo
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k3
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k3
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_4
 
-- alias: execute_panel_button_upper_k4_toggle_spdif_dac_1
+- alias: execute_panel_upper_button_k4_toggle_spdif_dac_1
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k4
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k4
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_1
 
-- alias: execute_panel_button_upper_k5_toggle_spdif_dac_raspberry
+- alias: execute_panel_upper_button_k5_toggle_spdif_dac_raspberry
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k5
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k5
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_raspberry
 
-- alias: execute_panel_button_upper_k6_toggle_spdif_dac_extractor
+- alias: execute_panel_upper_button_k6_toggle_spdif_dac_extractor
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k6
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k6
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_extractor
 
-- alias: execute_panel_button_upper_k7_toggle_spdif_dac_hdmi
+- alias: execute_panel_upper_button_k7_toggle_spdif_dac_hdmi
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_upper_k7
+    entity_id: binary_sensor.mintymcu_control_panel_upper_button_k7
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_hdmi
 
-- alias: execute_panel_button_lower_k0_toggle_desklight
+- alias: execute_panel_lower_button_k0_toggle_desklight
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_lower_k0
+    entity_id: binary_sensor.mintymcu_control_panel_lower_button_k0
     to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.mintymcu_rgb_desklight_default_color
 
-- alias: execute_panel_button_lower_k7_toggle_mute
+- alias: execute_panel_lower_button_k7_toggle_mute
   trigger:
     platform: state
-    entity_id: binary_sensor.mintymcu_control_panel_button_lower_k7
+    entity_id: binary_sensor.mintymcu_control_panel_lower_button_k7
     to: "on"
   action:
     - service: switch.toggle
