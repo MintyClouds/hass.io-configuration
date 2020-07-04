@@ -202,7 +202,7 @@
     to: "on"
   action:
     - service: switch.toggle
-      entity_id: switch.mintymcu_rgb_desklight_default_color
+      entity_id: switch.mintymcu_desklight
 
 - alias: execute_panel_lower_button_k7_toggle_mute
   trigger:
