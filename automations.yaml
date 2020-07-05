@@ -221,6 +221,6 @@
     - delay:
         seconds: 2
     - service: input_text.set_value
-        entity_id: input_text.mintymcu_panel_button_command
-        data:
-          value: "None"
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
