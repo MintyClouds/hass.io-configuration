@@ -214,3 +214,6 @@
       entity_id: switch.speakers_mute
     - service: switch.toggle
       entity_id: switch.mintymcu_control_panel_led
+    - service: input_text.set_value
+      value: "Mute"
+      entity_id: input_text.mintymcu_panel_button_command

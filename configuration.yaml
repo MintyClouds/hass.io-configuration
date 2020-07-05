@@ -152,6 +152,8 @@ input_text:
     name: MintyMCU_IR Last Mute Trigger Time
   last_ir_power_time:
     name: MintyMCU_IR Last Power Trigger Time
+  mintymcu_panel_button_command:
+    name: Button pressed in panel
 
 rest_command:
    amixer_volume_slider:
