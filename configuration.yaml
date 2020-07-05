@@ -67,10 +67,10 @@ sensor:
         ) }}"
 
   - platform: template
-      sensors:
-        weather_temperatue:
-          friendly_name: "Weather forecast temperature"
-          value_template: "{{ state_attr('weather.home', 'temperature') }}"
+    sensors:
+      weather_temperatue:
+        friendly_name: "Weather forecast temperature"
+        value_template: "{{ state_attr('weather.home', 'temperature') }}"
 
 switch:
   # Deluge
