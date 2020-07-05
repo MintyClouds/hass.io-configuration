@@ -149,6 +149,17 @@
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_3
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "HDMI: PC"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
+
 
 - alias: execute_panel_upper_button_k3_toggle_switch_4_nintendo
   trigger:
@@ -158,6 +169,16 @@
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_4
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "HDMI: SWITCH"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
 
 - alias: execute_panel_upper_button_k4_toggle_spdif_dac_1
   trigger:
@@ -176,6 +197,16 @@
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_raspberry
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "SPDIF DAC RPI"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
 
 - alias: execute_panel_upper_button_k6_toggle_spdif_dac_extractor
   trigger:
@@ -185,6 +216,16 @@
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_extractor
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "SPDIF DAC EXTRACTOR"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
 
 - alias: execute_panel_upper_button_k7_toggle_spdif_dac_hdmi
   trigger:
@@ -194,6 +235,16 @@
   action:
     - service: switch.toggle
       entity_id: switch.spdif_dac_hdmi
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "SPDIF DAC HDMI"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
 
 - alias: execute_panel_lower_button_k0_toggle_desklight
   trigger:
@@ -203,6 +254,16 @@
   action:
     - service: switch.toggle
       entity_id: switch.mintymcu_desklight
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "DeskLight"
+    - delay:
+        seconds: 2
+    - service: input_text.set_value
+      entity_id: input_text.mintymcu_panel_button_command
+      data:
+        value: "None"
 
 - alias: execute_panel_lower_button_k7_toggle_mute
   trigger:
@@ -212,8 +273,8 @@
   action:
     - service: switch.toggle
       entity_id: switch.speakers_mute
-    - service: switch.toggle
-      entity_id: switch.mintymcu_control_panel_led
+#    - service: switch.toggle
+#      entity_id: switch.mintymcu_control_panel_led
     - service: input_text.set_value
       entity_id: input_text.mintymcu_panel_button_command
       data:
