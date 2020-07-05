@@ -66,6 +66,12 @@ sensor:
         strptime(states.input_text.last_ir_power_time.state, '%Y-%m-%d %H:%M:%S.%f%z' )
         ) }}"
 
+  - platform: template
+      sensors:
+        weather_temperatue:
+          friendly_name: "Weather forecast temperature"
+          value_template: "{{ state_attr('weather.home', 'temperature') }}"
+
 switch:
   # Deluge
   - platform: deluge
