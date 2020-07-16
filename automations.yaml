@@ -22,6 +22,14 @@
         seconds: 2
     - service: switch.turn_on
       entity_id: switch.chronopod_plexamp_service
+    - delay:
+        seconds: 1
+    - service: media_player.media_play_pause
+      enitiy_id: media_player.plex_plexamp_chronopod
+    - delay:
+        seconds: 1
+    - service: media_player.media_play_pause
+      enitiy_id: media_player.plex_plexamp_chronopod
 
 - alias: set_bluetooth_discoverable
   trigger:
@@ -285,3 +293,24 @@
       entity_id: input_text.mintymcu_panel_button_command
       data:
         value: "None"
+
+- alias: chronopod_plexamp_reset_pause_actions
+  trigger:
+    platform: state
+    entity_id: input_boolean.chronopod_plexamp_reset_pause
+    to: "on"
+  action:
+    - delay:
+        seconds: 2
+    - service: switch.turn_on
+      entity_id: switch.chronopod_plexamp_service
+    - delay:
+        seconds: 1
+    - service: media_player.media_play_pause
+      enitiy_id: media_player.plex_plexamp_chronopod
+    - delay:
+        seconds: 1
+    - service: media_player.media_play_pause
+      enitiy_id: media_player.plex_plexamp_chronopod
+    - service: input_boolean_turn_off
+      entity_id: input_boolean.chronopod_plexamp_reset_pause
