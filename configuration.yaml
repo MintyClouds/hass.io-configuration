@@ -131,6 +131,9 @@ input_boolean:
   chronopod_plexamp_state:
     name: Chronopod Plexamp State
     initial: on
+  chronopod_plexamp_reset_pause:
+    name: Chronopod Reset Pause
+    initial: off
   chronopod_bluetooth_discoverable:
     name: Chronopod Bluetooth Discoverable
     initial: off
