@@ -312,5 +312,5 @@
         seconds: 1
     - service: media_player.media_play_pause
       entity_id: media_player.plex_plexamp_chronopod
-    - service: input_boolean_turn_off
+    - service: input_boolean.turn_off
       entity_id: input_boolean.chronopod_plexamp_reset_pause
