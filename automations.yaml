@@ -25,11 +25,11 @@
     - delay:
         seconds: 1
     - service: media_player.media_play_pause
-      enitiy_id: media_player.plex_plexamp_chronopod
+      entity_id: media_player.plex_plexamp_chronopod
     - delay:
         seconds: 1
     - service: media_player.media_play_pause
-      enitiy_id: media_player.plex_plexamp_chronopod
+      entity_id: media_player.plex_plexamp_chronopod
 
 - alias: set_bluetooth_discoverable
   trigger:
