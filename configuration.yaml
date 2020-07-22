@@ -196,6 +196,14 @@ rest_command:
      payload: '{"value": "{{ states("input_boolean.chronopod_bluetooth_discoverable") }}"}'
      content_type:  'application/json; charset=utf-8'
 
+light:
+  - platform: group
+    name: Room Lights
+    entities:
+      - light.room_light_1
+      - light.room_light_2
+      - light.room_light_3
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
