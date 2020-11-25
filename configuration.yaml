@@ -157,6 +157,16 @@ input_boolean:
     name: MintyPanel Encoder Value Decreased
   mintymcu_panel_encoder_recalibrate:
     name: MintyPanel Encoder Recalibration
+  media_center_switch_to_desktop:
+    name: Media Center - Desktop
+    initial: off
+  media_center_switch_to_xbox:
+    name: Media Center - Xbox
+    initial: off
+  media_center_switch_to_nintendo:
+    name: Media Center - Nintendo Switch
+    initial: off
+
 
 input_text:
   last_ir_mute_time:
