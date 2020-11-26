@@ -348,7 +348,7 @@
       - conditions:
         - condition: state
           entity_id: input_boolean.media_center_audio_keep_desktop
-          state: off
+          state: "off"
         sequence:
           - service: switch.toggle
             data:
@@ -371,7 +371,7 @@
       - conditions:
         - condition: state
           entity_id: input_boolean.media_center_audio_keep_desktop
-          state: off
+          state: "off"
         sequence:
           - service: switch.toggle
             data:
