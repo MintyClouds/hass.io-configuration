@@ -318,10 +318,10 @@
 #
 # Media Center Automations
 #
-- alias: media_center_switch_to_desktop
+- alias: media_center_video_from_desktop
   trigger:
       platform: state
-      entity_id: input_boolean.media_center_switch_to_desktop
+      entity_id: input_boolean.media_center_video_from_desktop
       to: "on"
   action:
     - service: switch.toggle
@@ -332,39 +332,51 @@
       entity_id: switch.spdif_dac_extractor
     - delay:
         seconds: 1
-    # - service: switch.toggle
-    #   entity_id: switch.spdif_bluetooth_extractor
     - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_switch_to_desktop
-- alias: media_center_switch_to_xbox
+      entity_id: input_boolean.media_center_video_from_desktop
+- alias: media_center_video_from_xbox
   trigger:
       platform: state
-      entity_id: input_boolean.media_center_switch_to_xbox
+      entity_id: input_boolean.media_center_video_from_xbox
       to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_2
     - delay:
         seconds: 1
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_hdmi
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: input_boolean.media_center_audio_keep_desktop
+          state: off
+        sequence:
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_all_hdmi
     - delay:
         seconds: 1
     - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_switch_to_xbox
-- alias: media_center_switch_to_nintendo
+      entity_id: input_boolean.media_center_video_from_xbox
+- alias: media_center_video_from_nintendo
   trigger:
       platform: state
-      entity_id: input_boolean.media_center_switch_to_nintendo
+      entity_id: input_boolean.media_center_video_from_nintendo
       to: "on"
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_4
     - delay:
         seconds: 1
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_hdmi
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: input_boolean.media_center_audio_keep_desktop
+          state: off
+        sequence:
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_all_hdmi    
     - delay:
         seconds: 1
     - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_switch_to_nintendo
+      entity_id: input_boolean.media_center_video_from_nintendo

@@ -214,19 +214,27 @@ input_boolean:
     name: MintyPanel Encoder Value Decreased
   mintymcu_panel_encoder_recalibrate:
     name: MintyPanel Encoder Recalibration
-  media_center_switch_to_desktop:
-    name: Media Center - Desktop
+  media_center_video_from_desktop:
+    name: Media Center - Video - Desktop
     initial: off
-  media_center_switch_to_xbox:
-    name: Media Center - Xbox
+  media_center_video_from_xbox:
+    name: Media Center - Video - Xbox
     initial: off
-  media_center_switch_to_nintendo:
-    name: Media Center - Nintendo Switch
+  media_center_video_from_nintendo:
+    name: Media Center - Video - Nintendo Switch
     initial: off
-  media_center_keep_desktop_audio:
-    name: Media Center - Keep Desktop Audio
+  media_center_audio_keep_desktop:
+    name: Media Center - Audio - Keep Desktop
     initial: off
-
+  media_center_show_settings_speakers:
+    name: Media Center - Speakers - Additional Settings
+    initial: off
+  media_center_show_settings_video:
+    name: Media Center - Video - Additional Settings
+    initial: off
+  media_center_show_settings_audio:
+    name: Media Center - Audio - Additional Settings
+    initial: off
 
 input_text:
   last_ir_mute_time:
