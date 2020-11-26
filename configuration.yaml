@@ -110,6 +110,63 @@ switch:
           service: light.turn_off
           data:
             entity_id: light.mintyrgb_desklight
+      spdif_all_from_hdmi:
+        turn_on:
+          - choose:
+            - conditions:
+              - condition: state
+                entity_id: input_boolean.media_center_keep_desktop_audio
+                state: off
+              sequence:
+                - service: switch.toggle
+                  data:
+                    entity_id: switch.spdif_dac_hdmi
+                - delay:
+                    seconds: 1
+                - service: switch.toggle
+                  data:
+                    entity_id: switch.spdif_bluetooth_hdmi
+                - delay:
+                    seconds: 1
+                - service: switch.toggle
+                  data:
+                    entity_id: switch.spdif_from_hdmi
+            default:
+              - service: switch.toggle
+                data:
+                  entity_id: switch.spdif_from_hdmi
+      spdif_all_from_extractor:
+        turn_on:
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_dac_extractor
+          - delay:
+              seconds: 1
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_bluetooth_extractor
+          - delay:
+              seconds: 1
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_from_extractor
+      spdif_all_from_raspberry:
+        turn_on:
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_dac_raspberry
+          - delay:
+              seconds: 1
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_bluetooth_raspberry
+          - delay:
+              seconds: 1
+          - service: switch.toggle
+            data:
+              entity_id: switch.spdif_from_extractor
+      
+       
 
 
 input_number:
@@ -165,6 +222,9 @@ input_boolean:
     initial: off
   media_center_switch_to_nintendo:
     name: Media Center - Nintendo Switch
+    initial: off
+  media_center_keep_desktop_audio:
+    name: Media Center - Keep Desktop Audio
     initial: off
 
 
