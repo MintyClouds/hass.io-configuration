@@ -326,8 +326,12 @@
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_3
+    - delay:
+        seconds: 1
     - service: switch.toggle
       entity_id: switch.spdif_dac_extractor
+    - delay:
+        seconds: 1
     # - service: switch.toggle
     #   entity_id: switch.spdif_bluetooth_extractor
     - service: input_boolean.turn_off
@@ -340,8 +344,12 @@
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_2
+    - delay:
+        seconds: 1
     - service: switch.toggle
       entity_id: switch.spdif_dac_hdmi
+    - delay:
+        seconds: 1
     - service: input_boolean.turn_off
       entity_id: input_boolean.media_center_switch_to_xbox
 - alias: media_center_switch_to_nintendo
@@ -352,7 +360,11 @@
   action:
     - service: switch.toggle
       entity_id: switch.hdmi_channel_4
+    - delay:
+        seconds: 1
     - service: switch.toggle
       entity_id: switch.spdif_dac_hdmi
+    - delay:
+        seconds: 1
     - service: input_boolean.turn_off
       entity_id: input_boolean.media_center_switch_to_nintendo
