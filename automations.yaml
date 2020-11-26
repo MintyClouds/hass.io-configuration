@@ -331,7 +331,7 @@
     # - service: switch.toggle
     #   entity_id: switch.spdif_bluetooth_extractor
     - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_switch_to_nintendo
+      entity_id: input_boolean.media_center_switch_to_desktop
 - alias: media_center_switch_to_xbox
   trigger:
       platform: state
@@ -343,7 +343,7 @@
     - service: switch.toggle
       entity_id: switch.spdif_dac_hdmi
     - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_switch_to_nintendo
+      entity_id: input_boolean.media_center_switch_to_xbox
 - alias: media_center_switch_to_nintendo
   trigger:
       platform: state
