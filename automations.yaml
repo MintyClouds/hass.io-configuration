@@ -310,7 +310,7 @@
   - delay:
       seconds: 1
   - service: switch.toggle
-    entity_id: switch.spdif_dac_extractor
+    entity_id: switch.spdif_all_hdmi
   - delay:
       seconds: 1
   - service: input_boolean.turn_off
