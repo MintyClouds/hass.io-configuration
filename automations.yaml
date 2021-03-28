@@ -4,379 +4,387 @@
     entity_id: input_number.chronopod_volume
   action:
     service: rest_command.amixer_volume_slider
-
+  id: a1a2144127954c52b6d6d0a02604bb93
 - alias: mute_volume_chronopod
   trigger:
     platform: state
     entity_id: input_boolean.chronopod_volume
   action:
     service: rest_command.amixer_volume_mute
-
+  id: 6ff6e132c2ca4282b885973b7431c5fc
 - alias: plexamp_service_start_after_stop
   trigger:
     platform: state
     entity_id: switch.chronopod_plexamp_service
-    to: "off"
+    to: 'off'
   action:
-    - delay:
-        seconds: 2
-    - service: switch.turn_on
-      entity_id: switch.chronopod_plexamp_service
-    - delay:
-        seconds: 1
-    - service: media_player.media_play_pause
-      entity_id: media_player.plex_plexamp_chronopod
-    - delay:
-        seconds: 1
-    - service: media_player.media_play_pause
-      entity_id: media_player.plex_plexamp_chronopod
-
+  - delay:
+      seconds: 2
+  - service: switch.turn_on
+    entity_id: switch.chronopod_plexamp_service
+  - delay:
+      seconds: 1
+  - service: media_player.media_play_pause
+    entity_id: media_player.plex_plexamp_chronopod
+  - delay:
+      seconds: 1
+  - service: media_player.media_play_pause
+    entity_id: media_player.plex_plexamp_chronopod
+  id: d8426640855248b08f36bb26449f839f
 - alias: set_bluetooth_discoverable
   trigger:
     platform: state
     entity_id: input_boolean.chronopod_bluetooth_discoverable
   action:
     service: rest_command.bluetoothctl_discoverable_toggle
-
+  id: 740c6b32e3d445b9a5e9ef9b1a41301b
 - alias: set_mintymcu_ir_mute
   trigger:
     platform: state
     entity_id: input_boolean.mintymcu_ir_mute
   action:
-    - service: switch.toggle
-      entity_id: switch.speakers_mute
-
+  - service: switch.toggle
+    entity_id: switch.speakers_mute
+  id: cfa62ef1f3d24a89b0633f3d2071e329
 - alias: set_mintymcu_ir_power
   trigger:
     platform: state
     entity_id: input_boolean.mintymcu_ir_power
   action:
-    - service: switch.toggle
-      entity_id: switch.speakers_power
-
+  - service: switch.toggle
+    entity_id: switch.speakers_power
+  id: 2bc7875f6238438e933122c179a8bcc7
 - alias: set_last_ir_mute_trigger_time
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_ir_volume_mute_trigger_sensor
-    to: "on"
+    to: 'on'
   action:
-    - service: input_text.set_value
-      entity_id: input_text.last_ir_mute_time
-      data_template:
-        value: "{{ now() | timestamp_local }}"
-
+  - service: input_text.set_value
+    entity_id: input_text.last_ir_mute_time
+    data_template:
+      value: '{{ now() | timestamp_local }}'
+  id: 45eadd0304b84ad88cbeef9002e7f27a
 - alias: set_last_ir_power_trigger_time
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_ir_power_trigger_sensor
-    to: "on"
+    to: 'on'
   action:
-    - service: input_text.set_value
-      entity_id: input_text.last_ir_power_time
-      data_template:
-        value: "{{ now() | timestamp_local }}"
-
+  - service: input_text.set_value
+    entity_id: input_text.last_ir_power_time
+    data_template:
+      value: '{{ now() | timestamp_local }}'
+  id: 1228d770690c445cbf0d5f5cd3d22b56
 - alias: update_ir_mute_power_time
   trigger:
-    - platform: time_pattern
-      minutes: '/1'
+  - platform: time_pattern
+    minutes: /1
   action:
-    - service: homeassistant.update_entity
-      entity_id: sensor.chronopod_last_muted
-    - service: homeassistant.update_entity
-      entity_id: sensor.chronopod_last_poweroff
-
+  - service: homeassistant.update_entity
+    entity_id: sensor.chronopod_last_muted
+  - service: homeassistant.update_entity
+    entity_id: sensor.chronopod_last_poweroff
+  id: e3430fdcf08447c8aeb209474c38aeda
 - alias: save_panel_value
   trigger:
     platform: state
     entity_id: sensor.mintymcu_control_panel_rotary_encoder
   action:
-    - service: input_number.set_value
-      entity_id: input_number.mintymcu_panel_encoder_value_from
-      data_template:
-        value: "{{ trigger.from_state.state }}"
-    - service: input_number.set_value
-      entity_id: input_number.mintymcu_panel_encoder_value_to
-      data_template:
-        value: "{{ trigger.to_state.state }}"
-
-
+  - service: input_number.set_value
+    entity_id: input_number.mintymcu_panel_encoder_value_from
+    data_template:
+      value: '{{ trigger.from_state.state }}'
+  - service: input_number.set_value
+    entity_id: input_number.mintymcu_panel_encoder_value_to
+    data_template:
+      value: '{{ trigger.to_state.state }}'
+  id: 7cf400dfa3a04fd8a3d3be2da121ed6f
 - alias: execute_panel_encoder_value_increased
   trigger:
-    - platform: template
-      value_template: "
-      {{ states('input_number.mintymcu_panel_encoder_value_from') < states('input_number.mintymcu_panel_encoder_value_to') }}
-      "
+  - platform: template
+    value_template: ' {{ states(''input_number.mintymcu_panel_encoder_value_from'')
+      < states(''input_number.mintymcu_panel_encoder_value_to'') }} '
   action:
-    - service: switch.toggle
-      entity_id: switch.speakers_volume_up
-
+  - service: switch.toggle
+    entity_id: switch.speakers_volume_up
+  id: afb0a655090d45ee8ae9219c7a12e05f
 - alias: execute_panel_encoder_value_decreased
   trigger:
-    - platform: template
-      value_template: "
-      {{ states('input_number.mintymcu_panel_encoder_value_from') > states('input_number.mintymcu_panel_encoder_value_to') }}
-      "
+  - platform: template
+    value_template: ' {{ states(''input_number.mintymcu_panel_encoder_value_from'')
+      > states(''input_number.mintymcu_panel_encoder_value_to'') }} '
   action:
-    - service: switch.toggle
-      entity_id: switch.speakers_volume_down
-
-#- alias: recalibrate_panel_encoder_volume
-#  trigger:
-#    platform: state
-#    entity_id: input_boolean.mintymcu_panel_encoder_recalibrate
-#  action:
-#    - service: switch.toggle
-#      entity_id: switch.speakers_mute
-
+  - service: switch.toggle
+    entity_id: switch.speakers_volume_down
+  id: c26ea52758224e70a79776582a2bc81c
 - alias: execute_panel_upper_button_k0_toggle_switch_1
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k0
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_1
-#    - service: switch.toggle
-#      entity_id: switch.mintymcu_control_panel_led
-
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_1
+  id: 1c726c69ece74b5281ecba62d37b960a
 - alias: execute_panel_upper_button_k1_toggle_switch_2
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k1
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_2
-
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_2
+  id: 09ea41e2891f4bf29ba018f6a8f92575
 - alias: execute_panel_upper_button_k2_toggle_switch_3_pc
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k2
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_3
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "HDMI: PC"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
-
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_3
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: 'HDMI: PC'
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: 863317bad6c44bcb9c207de014800b82
 - alias: execute_panel_upper_button_k3_toggle_switch_4_nintendo
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k3
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_4
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "HDMI: SWITCH"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_4
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: 'HDMI: SWITCH'
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: aecba41295694c4a9cbb1924638d2d63
 - alias: execute_panel_upper_button_k4_toggle_spdif_dac_1
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k4
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_1
-
+  - service: switch.toggle
+    entity_id: switch.spdif_dac_1
+  id: bc16a49bc9664c859e70d8a6f546ef1c
 - alias: execute_panel_upper_button_k5_toggle_spdif_dac_raspberry
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k5
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_raspberry
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "SPDIF DAC RPI"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.spdif_dac_raspberry
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: SPDIF DAC RPI
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: f0d19309a0cb4075a5909fc8722e790c
 - alias: execute_panel_upper_button_k6_toggle_spdif_dac_extractor
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k6
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_extractor
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "SPDIF DAC EXTRACTOR"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.spdif_dac_extractor
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: SPDIF DAC EXTRACTOR
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: 6e76470fcc9f4e599a6364c4f87dfaf5
 - alias: execute_panel_upper_button_k7_toggle_spdif_dac_hdmi
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_upper_button_k7
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_hdmi
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "SPDIF DAC HDMI"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.spdif_dac_hdmi
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: SPDIF DAC HDMI
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: 4896ba5ca0f345f3a8d434fdaed07632
 - alias: execute_panel_lower_button_k0_toggle_desklight
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_lower_button_k0
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.mintymcu_desklight
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "DeskLight"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.mintymcu_desklight
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: DeskLight
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: be091531342543aea76db8b4633b2367
 - alias: execute_panel_lower_button_k7_toggle_mute
   trigger:
     platform: state
     entity_id: binary_sensor.mintymcu_control_panel_lower_button_k7
-    to: "on"
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.speakers_mute
-#    - service: switch.toggle
-#      entity_id: switch.mintymcu_control_panel_led
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "Mute"
-    - delay:
-        seconds: 2
-    - service: input_text.set_value
-      entity_id: input_text.mintymcu_panel_button_command
-      data:
-        value: "None"
-
+  - service: switch.toggle
+    entity_id: switch.speakers_mute
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: Mute
+  - delay:
+      seconds: 2
+  - service: input_text.set_value
+    entity_id: input_text.mintymcu_panel_button_command
+    data:
+      value: None
+  id: 8873c64d605847f69117b060b3b3a812
 - alias: chronopod_plexamp_reset_pause_actions
   trigger:
     platform: state
     entity_id: input_boolean.chronopod_plexamp_reset_pause
-    to: "on"
+    to: 'on'
   action:
-    - delay:
-        seconds: 2
-    - service: switch.turn_on
-      entity_id: switch.chronopod_plexamp_service
-    - delay:
-        seconds: 1
-    - service: media_player.media_play_pause
-      entity_id: media_player.plex_plexamp_chronopod
-    - delay:
-        seconds: 1
-    - service: media_player.media_play_pause
-      entity_id: media_player.plex_plexamp_chronopod
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.chronopod_plexamp_reset_pause
-
-#
-# Media Center Automations
-#
+  - delay:
+      seconds: 2
+  - service: switch.turn_on
+    entity_id: switch.chronopod_plexamp_service
+  - delay:
+      seconds: 1
+  - service: media_player.media_play_pause
+    entity_id: media_player.plex_plexamp_chronopod
+  - delay:
+      seconds: 1
+  - service: media_player.media_play_pause
+    entity_id: media_player.plex_plexamp_chronopod
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.chronopod_plexamp_reset_pause
+  id: 2c11abbd92b64d2c86110f1361a457a8
 - alias: media_center_video_from_desktop
   trigger:
-      platform: state
-      entity_id: input_boolean.media_center_video_from_desktop
-      to: "on"
+    platform: state
+    entity_id: input_boolean.media_center_video_from_desktop
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_3
-    - delay:
-        seconds: 1
-    - service: switch.toggle
-      entity_id: switch.spdif_dac_extractor
-    - delay:
-        seconds: 1
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_video_from_desktop
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_3
+  - delay:
+      seconds: 1
+  - service: switch.toggle
+    entity_id: switch.spdif_dac_extractor
+  - delay:
+      seconds: 1
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.media_center_video_from_desktop
+  id: 3c6bdf3a193c4955ad2b6d2b83cae879
 - alias: media_center_video_from_xbox
   trigger:
-      platform: state
-      entity_id: input_boolean.media_center_video_from_xbox
-      to: "on"
+    platform: state
+    entity_id: input_boolean.media_center_video_from_xbox
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_2
-    - delay:
-        seconds: 1
-    - choose:
-      - conditions:
-        - condition: state
-          entity_id: input_boolean.media_center_audio_keep_desktop
-          state: "off"
-        sequence:
-          - service: switch.toggle
-            data:
-              entity_id: switch.spdif_all_hdmi
-    - delay:
-        seconds: 1
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_video_from_xbox
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_2
+  - delay:
+      seconds: 1
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.media_center_audio_keep_desktop
+        state: 'off'
+      sequence:
+      - service: switch.toggle
+        data:
+          entity_id: switch.spdif_all_hdmi
+  - delay:
+      seconds: 1
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.media_center_video_from_xbox
+  id: c70d671827fd4576bc62e910d722de72
 - alias: media_center_video_from_nintendo
   trigger:
-      platform: state
-      entity_id: input_boolean.media_center_video_from_nintendo
-      to: "on"
+    platform: state
+    entity_id: input_boolean.media_center_video_from_nintendo
+    to: 'on'
   action:
-    - service: switch.toggle
-      entity_id: switch.hdmi_channel_4
-    - delay:
-        seconds: 1
-    - choose:
-      - conditions:
-        - condition: state
-          entity_id: input_boolean.media_center_audio_keep_desktop
-          state: "off"
-        sequence:
-          - service: switch.toggle
-            data:
-              entity_id: switch.spdif_all_hdmi    
-    - delay:
-        seconds: 1
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.media_center_video_from_nintendo
+  - service: switch.toggle
+    entity_id: switch.hdmi_channel_4
+  - delay:
+      seconds: 1
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.media_center_audio_keep_desktop
+        state: 'off'
+      sequence:
+      - service: switch.toggle
+        data:
+          entity_id: switch.spdif_all_hdmi
+  - delay:
+      seconds: 1
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.media_center_video_from_nintendo
+  id: fbba5a6970e747f894f6d1153dade81c
+- id: '1616085210664'
+  alias: Turn on lights when iPhone returns home
+  description: ''
+  trigger:
+  - platform: device
+    device_id: e56d08d12b8d4480bb86741b2e42a6bc
+    domain: device_tracker
+    entity_id: device_tracker.iphone
+    type: enters
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: sensor.iphone_ssid
+    state: Panic! At The Cisco
+  action:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.room_lights
+  - device_id: e56d08d12b8d4480bb86741b2e42a6bc
+    domain: mobile_app
+    type: notify
+    message: Room lights turned on because iPhone returned home
+    title: Home Automation
+  mode: single
