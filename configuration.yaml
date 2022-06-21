@@ -4,7 +4,10 @@ default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
-#   base_url: example.duckdns.org:8123
+#  base_url: !secret domain
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: !secret reverse_proxies
 
 # Text to speech
 tts:
@@ -17,6 +20,10 @@ discovery:
   ignore:
     - yeelight
 
+api:
+
+alexa:
+  smart_home:
 
 yeelight:
   devices: !secret yeelight_devices_map
