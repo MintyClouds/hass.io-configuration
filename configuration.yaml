@@ -43,13 +43,13 @@ sensor:
     api_key: !secret api_key_lastfm
     users:
       - deathridge
-  # twitch
-  - platform: twitch
-    client_id: !secret api_key_twitch
-    channels:
-      - The8BitDrummer
-      - Cubeofwood
-      - ronnieradkeofficial
+#  # twitch
+#  - platform: twitch
+#    client_id: !secret api_key_twitch
+#    channels:
+#      - The8BitDrummer
+#      - Cubeofwood
+#      - ronnieradkeofficial
 # openhardwaremonitor
   - platform: openhardwaremonitor
     host: !secret ah532_host
