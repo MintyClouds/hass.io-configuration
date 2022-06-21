@@ -90,6 +90,10 @@ switch:
     name: "AH532 WoL"
     mac: !secret ah532_mac
     host: !secret ah532_host
+  - platform: wake_on_lan
+    name: "LG WebOS WoL"
+    mac: !secret lg_webos_mac
+    host: !secret lg_webos_host
   - platform: rest
     name: "ChronoPod Plexamp Service"
     resource: !secret chronopod_endpoint_plexamp
