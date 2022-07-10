@@ -50,6 +50,7 @@ sensor:
 #      - The8BitDrummer
 #      - Cubeofwood
 #      - ronnieradkeofficial
+
 # openhardwaremonitor
   - platform: openhardwaremonitor
     host: !secret ah532_host
@@ -100,6 +101,10 @@ switch:
   - platform: wake_on_lan
     name: "LG WebOS WoL"
     mac: !secret lg_webos_mac
+    turn_off:
+      service: media_player.turn_off
+      data:
+        entity_id: media_player.lg_webos_smart_tv
     host: !secret lg_webos_host
   - platform: rest
     name: "ChronoPod Plexamp Service"
