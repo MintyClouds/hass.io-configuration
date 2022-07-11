@@ -386,5 +386,85 @@
     domain: mobile_app
     type: notify
     message: Room lights turned on because iPhone returned home
-    title: Home Automation
+    title: CHRONOS HOME
+  mode: single
+- id: '1620861608673'
+  alias: Wall Switch - Turn on room lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: room_kitchen_light_rocker
+      event: 1002
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    entity_id: light.room_lights
+  mode: single
+- id: '1620861655282'
+  alias: Wall Switch - Turn on kitchen lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: room_kitchen_light_rocker
+      event: 2002
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    entity_id: light.kitchen_light
+  mode: single
+- id: '1620949178181'
+  alias: Entrance Door - Send notification if door is opened
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 97a4feb8a6e94a549193d012577ed591
+    entity_id: binary_sensor.openclose_7
+    domain: binary_sensor
+  condition: []
+  action:
+  - device_id: e56d08d12b8d4480bb86741b2e42a6bc
+    domain: mobile_app
+    type: notify
+    message: Entrance door was opened
+    title: CHRONOS HOME
+  mode: single
+- id: '1620949234167'
+  alias: Entrance Door - Send notification if door is closed
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 97a4feb8a6e94a549193d012577ed591
+    entity_id: binary_sensor.openclose_7
+    domain: binary_sensor
+  condition: []
+  action:
+  - device_id: e56d08d12b8d4480bb86741b2e42a6bc
+    domain: mobile_app
+    type: notify
+    message: Entrance door was closed
+    title: CHRONOS HOME
+  mode: single
+- id: '1657569900877'
+  alias: LG WebOS change output to optical
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 29c1653446ffaec1a7b7b1838f37d7e4
+    domain: media_player
+    entity_id: media_player.lg_webos_smart_tv
+    type: turned_on
+  condition: []
+  action:
+  - service: webostv.select_sound_output
+    data:
+      entity_id: media_player.lg_webos_smart_tv
+      sound_output: external_optical
   mode: single
