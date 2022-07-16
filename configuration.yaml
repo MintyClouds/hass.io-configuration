@@ -233,24 +233,24 @@ rest_command:
      payload: '{"value": "{{ states("input_boolean.chronopod_bluetooth_discoverable") }}"}'
      content_type:  'application/json; charset=utf-8'
 
-light:
-  - platform: group
-    name: Room Lights Left
-    entities:
-      - light.room_lamp_left_1
-      - light.room_lamp_left_2
-      - light.room_lamp_left_3
-  - platform: group
-    name: Room Lights Right
-    entities:
-      - light.room_lamp_right_1
-      - light.room_lamp_right_2
-      - light.room_lamp_right_3
-  - platform: group
-    name: Room Lights
-    entities:
-      - light.room_lights_left
-      - light.room_lights_right
+# light:
+#   - platform: group
+#     name: Room Lights Left
+#     entities:
+#       - light.room_lamp_left_1
+#       - light.room_lamp_left_2
+#       - light.room_lamp_left_3
+#   - platform: group
+#     name: Room Lights Right
+#     entities:
+#       - light.room_lamp_right_1
+#       - light.room_lamp_right_2
+#       - light.room_lamp_right_3
+#   - platform: group
+#     name: Room Lights
+#     entities:
+#       - light.room_lights_left
+#       - light.room_lights_right
 
 group: !include groups.yaml
 automation: !include automations.yaml
