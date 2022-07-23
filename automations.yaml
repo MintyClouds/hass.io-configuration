@@ -299,71 +299,78 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.chronopod_plexamp_reset_pause
   id: 2c11abbd92b64d2c86110f1361a457a8
-- alias: media_center_video_from_desktop
+- id: 3c6bdf3a193c4955ad2b6d2b83cae879
+  alias: media_center_video_from_desktop
   trigger:
-    platform: state
+  - platform: state
     entity_id: input_boolean.media_center_video_from_desktop
     to: 'on'
   action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.lg_webos_wol_2
   - service: switch.toggle
-    entity_id: switch.hdmi_channel_3
-  - delay:
-      seconds: 1
-  - service: switch.toggle
-    entity_id: switch.spdif_all_hdmi
+    data: {}
+    target:
+      entity_id: switch.hdmi_2_1_out_b_channel_1
   - delay:
       seconds: 1
   - service: input_boolean.turn_off
     entity_id: input_boolean.media_center_video_from_desktop
-  id: 3c6bdf3a193c4955ad2b6d2b83cae879
-- alias: media_center_video_from_xbox
+- id: c70d671827fd4576bc62e910d722de72
+  alias: media_center_video_from_xbox
   trigger:
-    platform: state
+  - platform: state
     entity_id: input_boolean.media_center_video_from_xbox
     to: 'on'
   action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.xbox_series_x
+    data:
+      media_content_id: Home
+      media_content_type: app
+    metadata:
+      title: Home
+      thumbnail: https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTcn94gJt65WYyTwQ49ebwNQG0mz7w8WUJNmEuoGHM.E3aaerQZwosQWGkZE2YWjAYYGZs16ju4xsy6bCVNs8y.XayFeb.Mft1ZY0oUV9UoIKrhuwVLZQn6K5Wm0rDDwZQ67cUYKwmYnki.HkT7lOSwoeVasyiRnHuGBojFtEEf_q0-
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.lg_webos_wol_2
   - service: switch.toggle
-    entity_id: switch.hdmi_channel_2
+    data: {}
+    target:
+      entity_id: switch.hdmi_2_1_out_b_channel_3
   - delay:
       seconds: 1
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.media_center_audio_keep_desktop
-        state: 'off'
-      sequence:
-      - service: switch.toggle
-        data:
-          entity_id: switch.spdif_all_hdmi
-  - delay:
-      seconds: 1
+    enabled: true
   - service: input_boolean.turn_off
     entity_id: input_boolean.media_center_video_from_xbox
-  id: c70d671827fd4576bc62e910d722de72
-- alias: media_center_video_from_nintendo
+- id: fbba5a6970e747f894f6d1153dade81c
+  alias: media_center_video_from_nintendo
   trigger:
-    platform: state
+  - platform: state
     entity_id: input_boolean.media_center_video_from_nintendo
     to: 'on'
   action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.lg_webos_wol_2
   - service: switch.toggle
-    entity_id: switch.hdmi_channel_4
-  - delay:
-      seconds: 1
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.media_center_audio_keep_desktop
-        state: 'off'
-      sequence:
-      - service: switch.toggle
-        data:
-          entity_id: switch.spdif_all_hdmi
+    data: {}
+    target:
+      entity_id:
+      - switch.hdmi_2_1_out_b_channel_2
   - delay:
       seconds: 1
   - service: input_boolean.turn_off
     entity_id: input_boolean.media_center_video_from_nintendo
-  id: fbba5a6970e747f894f6d1153dade81c
 - id: '1616085210664'
   alias: Turn on lights when iPhone returns home
   description: ''

@@ -182,6 +182,21 @@ input_boolean:
   media_center_video_from_nintendo:
     name: Media Center - Video - Nintendo Switch
     initial: off
+  media_center_video_from_receiver:
+    name: Media Center - Video - Receiver
+    initial: off
+  media_center_app_spotify:
+    name: Media Center - App - Spotify
+    initial: off
+  media_center_app_youtube:
+    name: Media Center - App - YouTube
+    initial: off
+  media_center_app_plex:
+    name: Media Center - App - Plex
+    initial: off
+  media_center_audio_vinyl:
+    name: Media Center - Audio - Vinyl
+    initial: off
   media_center_audio_keep_desktop:
     name: Media Center - Audio - Keep Desktop
     initial: off
