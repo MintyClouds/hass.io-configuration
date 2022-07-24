@@ -306,10 +306,10 @@
     entity_id: input_boolean.media_center_video_from_desktop
     to: 'on'
   action:
-  - service: switch.turn_on
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
     data: {}
-    target:
-      entity_id: switch.lg_webos_wol_2
+  - service: script.lg_webos_switch_to_hdmi_output
+    data: {}
   - service: switch.toggle
     data: {}
     target:
@@ -319,12 +319,15 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.media_center_video_from_desktop
 - id: c70d671827fd4576bc62e910d722de72
-  alias: media_center_video_from_xbox
+  alias: media_center_video_from_receiver
   trigger:
   - platform: state
-    entity_id: input_boolean.media_center_video_from_xbox
+    entity_id:
+    - input_boolean.media_center_video_from_receiver
     to: 'on'
   action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
   - service: media_player.play_media
     target:
       entity_id: media_player.xbox_series_x
@@ -338,19 +341,19 @@
       children_media_class:
       navigateIds:
       - {}
-  - service: switch.turn_on
+  - service: script.lg_webos_switch_to_hdmi_output
     data: {}
-    target:
-      entity_id: switch.lg_webos_wol_2
   - service: switch.toggle
     data: {}
     target:
-      entity_id: switch.hdmi_2_1_out_b_channel_3
+      entity_id: switch.hdmi_2_1_out_b_channel_4
   - delay:
       seconds: 1
     enabled: true
   - service: input_boolean.turn_off
-    entity_id: input_boolean.media_center_video_from_xbox
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_video_from_receiver
 - id: fbba5a6970e747f894f6d1153dade81c
   alias: media_center_video_from_nintendo
   trigger:
@@ -358,10 +361,10 @@
     entity_id: input_boolean.media_center_video_from_nintendo
     to: 'on'
   action:
-  - service: switch.turn_on
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
     data: {}
-    target:
-      entity_id: switch.lg_webos_wol_2
+  - service: script.lg_webos_switch_to_hdmi_output
+    data: {}
   - service: switch.toggle
     data: {}
     target:
@@ -470,8 +473,150 @@
     type: turned_on
   condition: []
   action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
   - service: webostv.select_sound_output
     data:
       entity_id: media_player.lg_webos_smart_tv
       sound_output: external_optical
+  mode: single
+- id: '1658593647590'
+  alias: media_center_app_spotify
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.media_center_app_spotify
+    to: 'on'
+  condition: []
+  action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
+  - service: media_player.select_source
+    data:
+      source: Spotify - Music and Podcasts
+    target:
+      device_id: 29c1653446ffaec1a7b7b1838f37d7e4
+  - delay:
+      seconds: 1
+    enabled: true
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_app_spotify
+  mode: single
+- id: '1658593940003'
+  alias: media_center_app_youtube
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.media_center_app_youtube
+    to: 'on'
+  condition: []
+  action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
+  - service: media_player.select_source
+    data:
+      source: YouTube
+    target:
+      device_id: 29c1653446ffaec1a7b7b1838f37d7e4
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_app_youtube
+  mode: single
+- id: '1658593996098'
+  alias: media_center_app_plex
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.media_center_app_plex
+    to: 'on'
+  condition: []
+  action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
+  - service: media_player.select_source
+    data:
+      source: Plex
+    target:
+      device_id: 29c1653446ffaec1a7b7b1838f37d7e4
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_app_plex
+  mode: single
+- id: '1658594105266'
+  alias: media_center_sound_vinyl
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.media_center_audio_vinyl
+    to: 'on'
+  condition: []
+  action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
+  - service: media_player.select_source
+    data:
+      source: Art Gallery
+    target:
+      device_id: 29c1653446ffaec1a7b7b1838f37d7e4
+  - delay:
+      seconds: 1
+    enabled: true
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_audio_vinyl
+  mode: single
+- id: '1658596347656'
+  alias: media_center_video_from_xbox
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.media_center_video_from_xbox
+    to: 'on'
+  condition: []
+  action:
+  - service: script.lg_webos_turn_on_if_is_not_turned_on
+    data: {}
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.xbox_series_x
+    data:
+      media_content_id: Home
+      media_content_type: app
+    metadata:
+      title: Home
+      thumbnail: https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTcn94gJt65WYyTwQ49ebwNQG0mz7w8WUJNmEuoGHM.E3aaerQZwosQWGkZE2YWjAYYGZs16ju4xsy6bCVNs8y.XayFeb.Mft1ZY0oUV9UoIKrhuwVLZQn6K5Wm0rDDwZQ67cUYKwmYnki.HkT7lOSwoeVasyiRnHuGBojFtEEf_q0-
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+  - service: script.lg_webos_switch_to_hdmi_output
+    data: {}
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.hdmi_2_1_out_b_channel_3
+  - delay:
+      seconds: 1
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.media_center_video_from_xbox
   mode: single
