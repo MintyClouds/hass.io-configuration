@@ -131,31 +131,31 @@ switch:
       room_lights_ceiling_full:
         friendly_name: Room Lights Ceiling Full
         command_on: >
-          ssh -i {{ !secret pi3rf_key_path }} -o StrictHostKeyChecking=no -q {{ !secret pi3rf_credentials }} 
+          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
           sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/C_330_4500e6_g45.iq
         command_off: off
       room_lights_ceiling_outer:
         friendly_name: Room Lights Ceiling Outer
         command_on: >
-          ssh -i {{ !secret pi3rf_key_path }} -o StrictHostKeyChecking=no -q {{ !secret pi3rf_credentials }} 
+          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
           sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/B_330_4500e6_g45.iq
         command_off: off
       room_lights_ceiling_inner:
         friendly_name: Room Lights Ceiling Inner
         command_on: >
-          ssh -i {{ !secret pi3rf_key_path }} -o StrictHostKeyChecking=no -q {{ !secret pi3rf_credentials }} 
+          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
           sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/A_330_4500e6_g45.iq
         command_off: off
       room_lights_snake_on:
         friendly_name: Room Lights Snake On
         command_on: >
-          ssh -i {{ !secret pi3rf_key_path }} -o StrictHostKeyChecking=no -q {{ !secret pi3rf_credentials }} 
+          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
           sudo /usr/bin/sendiq -s 250000 -f 430.2500e6 -t u8 -i /home/euphemia/rpitx/codes/snake_on_430_2500e6.iq
         command_off: off
       room_lights_snake_off:
         friendly_name: Room Lights Snake Off
         command_on: >
-          ssh -i {{ !secret pi3rf_key_path }} -o StrictHostKeyChecking=no -q {{ !secret pi3rf_credentials }} 
+          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
           sudo /usr/bin/sendiq -s 250000 -f 430.2500e6 -t u8 -i /home/euphemia/rpitx/codes/snake_off_430_2500e6.iq
         command_off: off
 
