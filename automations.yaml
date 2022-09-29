@@ -328,19 +328,6 @@
   action:
   - service: script.lg_webos_turn_on_if_is_not_turned_on
     data: {}
-  - service: media_player.play_media
-    target:
-      entity_id: media_player.xbox_series_x
-    data:
-      media_content_id: Home
-      media_content_type: app
-    metadata:
-      title: Home
-      thumbnail: https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTcn94gJt65WYyTwQ49ebwNQG0mz7w8WUJNmEuoGHM.E3aaerQZwosQWGkZE2YWjAYYGZs16ju4xsy6bCVNs8y.XayFeb.Mft1ZY0oUV9UoIKrhuwVLZQn6K5Wm0rDDwZQ67cUYKwmYnki.HkT7lOSwoeVasyiRnHuGBojFtEEf_q0-
-      media_class: app
-      children_media_class:
-      navigateIds:
-      - {}
   - service: script.lg_webos_switch_to_hdmi_output
     data: {}
   - service: switch.toggle
