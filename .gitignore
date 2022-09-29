@@ -5,3 +5,4 @@ home-assistant.log
 .HA_VERSION
 .gitattributes
 .storage
+access/
