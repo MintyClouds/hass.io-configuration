@@ -22,6 +22,11 @@ frontend:
 
 api:
 
+homeassistant:
+  customize:
+    switch.room_lights_neon_snake_power:
+      assumed_state: false
+
 alexa:
   smart_home:
 
@@ -126,41 +131,41 @@ switch:
           service: light.turn_off
           data:
             entity_id: light.mintyrgb_desklight
-  - platform: command_line
-    switches:
-      room_lights_ceiling_full:
-        friendly_name: Room Lights Ceiling Full
-        command_on: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/C_f330_4500e6_g45.iq
-        command_off: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/C_f330_4500e6_g45.iq
-      room_lights_ceiling_outer:
-        friendly_name: Room Lights Ceiling Outer
-        command_on: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/B_f330_4500e6_g45.iq
-        command_off: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/B_f330_4500e6_g45.iq
+      room_lights_neon_snake_power:
+        turn_on:
+          service: shell_command.pi3rf_snake_power
+        turn_off:
+          service: shell_command.pi3rf_snake_power
       room_lights_ceiling_inner:
-        friendly_name: Room Lights Ceiling Inner
-        command_on: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/A_f330_4500e6_g45.iq
-        command_off: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/A_f330_4500e6_g45.iq
-      room_lights_snake_on:
-        friendly_name: Room Lights Snake On
-        command_on: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 430.2500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/snake_on_430_2500e6_g25.iq
-        command_off: >
-          ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
-          sudo /usr/bin/sendiq -s 250000 -f 430.2500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/snake_off_430_2500e6_g25.iq
+        turn_on:
+          service: shell_command.pi3rf_ceiling_inner
+        turn_off:
+          service: shell_command.pi3rf_ceiling_inner
+      room_lights_ceiling_outer:
+        turn_on:
+          service: shell_command.pi3rf_ceiling_outer
+        turn_off:
+          service: shell_command.pi3rf_ceiling_outer
+      room_lights_ceiling_full:
+        turn_on:
+          service: shell_command.pi3rf_ceiling_full
+        turn_off:
+          service: shell_command.pi3rf_ceiling_full
 
+
+shell_command:
+  pi3rf_ceiling_inner: >
+    ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
+    sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/A_f330_4500e6_g45.iq
+  pi3rf_ceiling_outer: >
+    ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
+    sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/B_f330_4500e6_g45.iq
+  pi3rf_ceiling_full: >
+    ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
+    sudo /usr/bin/sendiq -s 250000 -f 330.4500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/C_f330_4500e6_g45.iq
+  pi3rf_snake_power: >
+    ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
+    sudo /usr/bin/sendiq -s 250000 -f 433.9500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/snake_on_433_9500e6_g25.iq
 
 input_number:
   # alsa volume control
