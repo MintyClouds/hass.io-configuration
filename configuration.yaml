@@ -177,21 +177,25 @@ binary_sensor:
     name: HTTP Snake Light sensor
     device_class: light
     value_template: '{{ value_json.snake }}'
+    scan_interval: 10
   - platform: rest
     resource: !secret opencv_color_endpoint
     name: HTTP Ceiling Inner Light sensor
     device_class: light
     value_template: '{{ value_json.ceiling_inner }}'
+    scan_interval: 10
   - platform: rest
     resource: !secret opencv_color_endpoint
     name: HTTP Ceiling Outer Light sensor
     device_class: light
     value_template: '{{ value_json.ceiling_outer }}'
+    scan_interval: 10
   - platform: rest
     resource: !secret opencv_color_endpoint
     name: HTTP Ceiling Full Light sensor
     device_class: light
     value_template: '{{ value_json.ceiling_full }}'
+    scan_interval: 10
 
 input_number:
   # alsa volume control
