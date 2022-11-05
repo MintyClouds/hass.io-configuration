@@ -136,21 +136,25 @@ switch:
           service: shell_command.pi3rf_snake_power
         turn_off:
           service: shell_command.pi3rf_snake_power
+        value_template: '{{ state(binary_sensor.http_snake_light_sensor) }}'
       room_lights_ceiling_inner:
         turn_on:
           service: shell_command.pi3rf_ceiling_inner
         turn_off:
           service: shell_command.pi3rf_ceiling_inner
+        value_template: '{{ state(binary_sensor.http_ceiling_inner_light_sensor) }}'
       room_lights_ceiling_outer:
         turn_on:
           service: shell_command.pi3rf_ceiling_outer
         turn_off:
           service: shell_command.pi3rf_ceiling_outer
+        value_template: '{{ state(binary_sensor.http_ceiling_outer_light_sensor) }}'
       room_lights_ceiling_full:
         turn_on:
           service: shell_command.pi3rf_ceiling_full
         turn_off:
           service: shell_command.pi3rf_ceiling_full
+        value_template: '{{ state(binary_sensor.http_ceiling_full_light_sensor) }}'
 
 
 shell_command:
