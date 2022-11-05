@@ -167,6 +167,28 @@ shell_command:
     ssh -i /config/access/id_rsa_pi3rf -o StrictHostKeyChecking=no -q euphemia@pi3rf.local
     sudo /usr/bin/sendiq -s 250000 -f 433.9500e6 -t u8 -i /home/euphemia/rpitx/codes/clipped/snake_on_433_9500e6_g25.iq
 
+binary_sensor:
+  - platform: rest
+    resource: !secret opencv_color_endpoint
+    name: HTTP Snake Light sensor
+    device_class: light
+    value_template: '{{ value_json.snake }}'
+  - platform: rest
+    resource: !secret opencv_color_endpoint
+    name: HTTP Ceiling Inner Light sensor
+    device_class: light
+    value_template: '{{ value_json.ceiling_inner }}'
+  - platform: rest
+    resource: !secret opencv_color_endpoint
+    name: HTTP Ceiling Outer Light sensor
+    device_class: light
+    value_template: '{{ value_json.ceiling_outer }}'
+  - platform: rest
+    resource: !secret opencv_color_endpoint
+    name: HTTP Ceiling Full Light sensor
+    device_class: light
+    value_template: '{{ value_json.ceiling_full }}'
+
 input_number:
   # alsa volume control
   chronopod_volume:
