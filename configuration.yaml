@@ -96,6 +96,12 @@ sensor:
         friendly_name: "Weather forecast temperature"
         value_template: "{{ state_attr('weather.home', 'temperature') }}"
 
+
+template:
+  - sensor:
+    - name: MintyPrism Last Online
+      state: '{{ states.sensor.mintyprism_lastactive.last_changed }}'
+
 switch:
   # Deluge
   - platform: deluge
