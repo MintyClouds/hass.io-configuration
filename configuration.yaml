@@ -101,6 +101,7 @@ template:
   - sensor:
     - name: MintyPrism Last Online
       state: '{{ states.sensor.mintyprism_lastactive.last_changed }}'
+      device_class: timestamp
 
 switch:
   # Deluge
