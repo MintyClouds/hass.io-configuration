@@ -165,7 +165,7 @@ switch:
         turn_off:
           - service: shell_command.pi3rf_ceiling_inner
           - condition: state
-            entity_id: binary_sensor.http_ceiling_full_light_sensor
+            entity_id: binary_sensor.http_ceiling_inner_light_sensor
             state: "on"
         value_template: '{{ is_state("binary_sensor.http_ceiling_inner_light_sensor","on") }}'
       room_lights_ceiling_outer:
@@ -177,7 +177,7 @@ switch:
         turn_off:
           - service: shell_command.pi3rf_ceiling_outer
           - condition: state
-            entity_id: binary_sensor.http_ceiling_full_light_sensor
+            entity_id: binary_sensor.http_ceiling_outer_light_sensor
             state: "on"
         value_template: '{{ is_state("binary_sensor.http_ceiling_outer_light_sensor","on") }}'
       room_lights_ceiling_full:
