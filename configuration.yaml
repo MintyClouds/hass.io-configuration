@@ -148,12 +148,12 @@ switch:
         turn_on:
           - service: shell_command.pi3rf_snake_power
           - condition: state
-            entity_id: switch.room_lights_neon_snake_power
+            entity_id: binary_sensor.http_snake_light_sensor
             state: "off"
         turn_off:
           - service: shell_command.pi3rf_snake_power
           - condition: state
-            entity_id: switch.room_lights_neon_snake_power
+            entity_id: binary_sensor.http_snake_light_sensor
             state: "on"
         value_template: '{{ is_state("binary_sensor.http_snake_light_sensor","on") }}'
       room_lights_ceiling_inner:
