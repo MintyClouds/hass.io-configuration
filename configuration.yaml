@@ -356,7 +356,7 @@ rest_command:
 
 light:
   - platform: template
-    ligths:
+    lights:
       neon_snake_light:
         friendly_name: "Neon Snake (Light)"
         turn_on:
