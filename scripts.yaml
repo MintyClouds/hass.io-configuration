@@ -35,3 +35,66 @@ lg_webos_switch_to_hdmi_output:
     target:
       device_id: 29c1653446ffaec1a7b7b1838f37d7e4
   mode: single
+room_lights_ceiling_full_light_script:
+  alias: Room Lights - Ceiling (full) (Light) script
+  sequence:
+  - if:
+        - alias: "If inner light is disabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_inner_light
+          state: off
+        - alias: "If outer light is disabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_outer_light
+          state: off
+      then:
+        # - alias: "Disable full light"
+        #   service: shell_command.pi3rf_ceiling_full
+        - alias: "Enable inner light"
+          service: light.turn_on
+          data:
+            entity_id: light.room_lights_ceiling_inner_light
+        - alias: "Enable outer light"
+          service: light.turn_on
+          data:
+            entity_id: light.room_lights_ceiling_outer_light
+        - stop: "Stop running ceiling light script"
+    - if:
+        - alias: "If inner light is enabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_inner_light
+          state: on
+        - alias: "If outer light is enabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_outer_light
+          state: on
+      then:
+        # - alias: "Disable full light"
+        #   service: shell_command.pi3rf_ceiling_full
+        - alias: "Disable inner light"
+          service: light.turn_off
+          data:
+            entity_id: light.room_lights_ceiling_inner_light
+        - alias: "Disable outer light"
+          service: light.turn_off
+          data:
+            entity_id: light.room_lights_ceiling_outer_light
+        - stop: "Stop running ceiling light script"
+          
+    - if:
+        - alias: "If inner light is enabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_inner_light
+          state: on
+      then:
+        - alias: "Disable inner light"
+          service: shell_command.pi3rf_ceiling_inner
+    - if:
+        - alias: "If outer light is enabled"
+          condition: state
+          entity_id: light.room_lights_ceiling_outer_light
+          state: on
+      then:
+        - alias: "Disable outer light"
+          service: shell_command.pi3rf_ceiling_outer
+  mode: single
