@@ -354,7 +354,35 @@ rest_command:
      payload: '{"value": "{{ states("input_boolean.chronopod_bluetooth_discoverable") }}"}'
      content_type:  'application/json; charset=utf-8'
 
-# light:
+light:
+  - platform: template
+    ligths:
+      neon_snake_light:
+        friendly_name: "Neon Snake (Light)"
+        turn_on:
+          service: shell_command.pi3rf_snake_power
+        turn_off:
+          service: shell_command.pi3rf_snake_power
+      room_lights_ceiling_inner_light:
+        friendly_name: "Room Lights - Ceiling (inner) (Light)"
+        turn_on:
+          service: shell_command.pi3rf_ceiling_inner
+        turn_off:
+          service: shell_command.pi3rf_ceiling_inner
+      room_lights_ceiling_outer_light:
+        friendly_name: "Room Lights - Ceiling (outer) (Light)"
+        turn_on:
+          service: shell_command.pi3rf_ceiling_outer
+        turn_off:
+          service: shell_command.pi3rf_ceiling_outer
+      room_lights_ceiling_full_light:
+        friendly_name: "Room Lights - Ceiling (full) (Light)"
+        turn_on:
+          service: shell_command.pi3rf_ceiling_full
+        turn_off:
+          service: shell_command.pi3rf_ceiling_full
+          
+      
 #   - platform: group
 #     name: Room Lights Left
 #     entities:
