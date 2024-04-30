@@ -312,8 +312,8 @@ input_boolean:
   media_center_show_settings_video:
     name: Media Center - Video - Additional Settings
     initial: off
-  media_center_show_settings_audio:
-    name: Media Center - Audio - Additional Settings
+  media_center_show_settings_receiver:
+    name: Media Center - Receiver - Additional Settings
     initial: off
 
 input_text:
